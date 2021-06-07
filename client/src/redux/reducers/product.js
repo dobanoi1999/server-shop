@@ -1,24 +1,48 @@
 
-const productReducer = (productList = [], action) => {
+const productReducer = (state = {
+    loading: false,
+    err: "",
+    data: []
+}, action) => {
 
     switch (action.type) {
         case "FETCH_PRODUCT_LIST":
-            const newProducList = [...action.payload]
-            return newProducList
+
+            return {
+                ...state,
+                loading: true
+            }
+        case "FETCH_PRODUCT_LIST_SUCCESS":
+            return {
+                data: [...action.payload],
+                loading: false,
+                err: "",
+            }
+        case "FETCH_PRODUCT_LIST_FAIL":
+
+            return {
+                ...state,
+                err: action.payload || "Load failed",
+                loading: false
+            }
         case "ADD_PRODUCT":
 
-            productList.push(action.payload)
-
-
-            return [...productList]
+            return {
+                ...state,
+                data: [...state.data.push(action.payload)]
+            }
 
         case "REMOVE_PRODUCT":
-            productList.splice(action.payload, 1);
-            return [...productList]
+
+            return {
+                state,
+                data: [...state.data.splice(action.payload, 1)]
+            }
 
         case "UPDATE_PRODUCT":
             const { title, price, image, description, _id, category } = action.payload.product
-            productList[action.payload.index] = {
+            const data = [...state.data]
+            data[action.payload.index] = {
                 title,
                 price,
                 image,
@@ -26,10 +50,13 @@ const productReducer = (productList = [], action) => {
                 _id,
                 category
             }
-            return [...productList]
+            return {
+                ...state,
+                data
+            }
 
         default:
-            return productList
+            return state
 
     }
 }

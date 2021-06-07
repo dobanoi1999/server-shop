@@ -1,8 +1,8 @@
 import axios from "axios"
 import queryString from 'query-string'
-//"https://e-commerce-dbn.herokuapp.com"
+const baseURL = process.env.NODE_ENV === "production" ? "https://e-commerce-dbn.herokuapp.com" : "http://localhost:8080"
 const axiosClient = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL,
     headers: {
         'content-type': 'application/json',
         'Authorization': localStorage.getItem("token")

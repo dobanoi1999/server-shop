@@ -1,5 +1,6 @@
 import cartApi from 'api/cartApi'
-import React from 'react'
+import { Button } from 'globalCss'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { decreaseCart, deleteCart, increaseCart } from 'redux/action/cart'
 import {
@@ -10,8 +11,10 @@ import {
 const CartItem = ({ card, index }) => {
     const dispatch = useDispatch()
     const { product, quantity } = card
+    const [loading, setLoading] = useState(false)
     const dis = quantity === 1 ? true : false
     const handleChangeQuality = (t) => {
+        setLoading(true)
         cartApi.changeQuality(t, product._id)
             .then(res => {
 
@@ -21,18 +24,21 @@ const CartItem = ({ card, index }) => {
 
                     dispatch(decreaseCart(index))
                 }
+                setLoading(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => setLoading(false))
 
 
     }
     const handleDelete = () => {
+        setLoading(true)
         cartApi.deleteCart(product._id)
             .then(res => {
                 console.log(res)
                 dispatch(deleteCart(index))
+                setLoading(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => setLoading(false))
     }
     return (
         <CartItems>
@@ -42,19 +48,21 @@ const CartItem = ({ card, index }) => {
             <td><NumberItem>
                 <IncreaseBtn
                     type="button"
-                    disabled={dis}
+                    disabled={dis || loading}
                     onClick={() => handleChangeQuality("decrease")}
                 >
                     -
                      </IncreaseBtn>
                 <Count>{quantity}</Count>
-                <DecreaseBtn type="button"
+                <DecreaseBtn
+                    type="button"
+                    disabled={loading}
                     onClick={() => handleChangeQuality("increase")}
                 >
                     +
                      </DecreaseBtn>
             </NumberItem></td>
-            <td><BtnDelete onClick={handleDelete} >Delete</BtnDelete></td>
+            <td><Button disabled={loading} bgColor="cancel" onClick={handleDelete} >Delete</Button></td>
         </CartItems>
     )
 }

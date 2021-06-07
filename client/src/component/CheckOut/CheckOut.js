@@ -3,6 +3,7 @@ import orderApi from 'api/orderApi'
 import data from 'assets/data.json'
 import { Modal } from 'component/product/ProductItem/productItem.element'
 import Toast from 'component/shared/Toast/Toast'
+import { Button } from 'globalCss'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -106,7 +107,7 @@ const CheckOut = () => {
                     </>
                     :
                     ""}
-                <BtnAdd onClick={() => setToggle(true)}>{address.name ? "Edit" : "Add new"}</BtnAdd>
+                <Button bgColor="primary" onClick={() => setToggle(true)}>{address.name ? "Edit" : "Add new"}</Button>
             </AddressInfor>
             <Head >
                 <h2>List Product</h2>
@@ -135,7 +136,9 @@ const CheckOut = () => {
 
                 </tbody>
             </ListItem>
-            <CheckOutBtn onClick={handleCheckout}>Check Out</CheckOutBtn>
+            <Button bgColor="primary" style={{
+                float: "right"
+            }} onClick={handleCheckout}>Check Out</Button>
             {toggle ? <Modal  >
 
                 <Form>
@@ -203,13 +206,13 @@ const CheckOut = () => {
                         })}
                     </select>
                     {err ? <p style={{ color: "red" }} >{err}</p> : ""}
-                    <button type="button" onClick={(e) => {
+                    <Button bgColor="primary" type="button" onClick={(e) => {
 
                         if (!verify(address)) return
 
                         setToggle(false)
-                    }} >submit</button>
-                    <button type="button" onClick={() => setToggle(false)} >Cancel</button>
+                    }} >submit</Button>
+                    <Button bgColor="cancel" type="button" onClick={() => setToggle(false)} >Cancel</Button>
 
                 </Form>
             </Modal> : ""}

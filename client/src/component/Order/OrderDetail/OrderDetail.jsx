@@ -27,6 +27,7 @@ const OrderDe = () => {
     }
   }, [params]);
   if (!order) return <p>Loading</p>;
+
   return (
     <DetailContainer>
       <h2>Order Detail</h2>

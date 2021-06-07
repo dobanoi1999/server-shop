@@ -1,6 +1,6 @@
 require("dotenv").config()
 const express = require('express')
-const mongosee = require("mongoose")
+const mongoose = require("mongoose")
 const productRoute = require('./routes/productRoute')
 const userRoute = require('./routes/userRoute')
 const categoryRoute = require('./routes/categoryRoute')
@@ -39,7 +39,7 @@ app.listen(port, () => {
 })
 
 const URL = process.env.MONGOSE_URL
-mongosee.connect(URL, {
+mongoose.connect(URL, {
     useCreateIndex: true,
     useFindAndModify: false,
     useNewUrlParser: true,

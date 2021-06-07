@@ -1,5 +1,6 @@
 import authApi from "api/authApi";
 import userImg from "assets/images/user.jpg";
+import { Button } from "globalCss";
 import useForm from "hooks/useForm";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -39,7 +40,9 @@ const LoginForm = () => {
             onChange={handleOnChange}
           />
           {err ? err : ""}
-          <button type="submit">Submit</button>
+          <Button bgColor="primary" block type="submit">
+            Submit
+          </Button>
         </Form>
       </Wrapper>
     </StyledContainer>

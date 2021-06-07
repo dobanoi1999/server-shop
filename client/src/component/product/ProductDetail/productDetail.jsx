@@ -17,16 +17,16 @@ import {
 } from "./productDetail.element";
 export default function ProductDetail() {
   const param = useParams();
-  const products = useSelector((state) => state.product);
+  const { data } = useSelector((state) => state.product);
   const isLogged = useSelector((state) => state.auth.isLogged);
   const dispatch = useDispatch();
   const [product, setProduct] = useState("");
   useEffect(() => {
-    if (param && products.length > 0) {
-      const product = products.find((i) => i._id === param.id);
+    if (param && data.length > 0) {
+      const product = data.find((i) => i._id === param.id);
       setProduct(product);
     }
-  }, [param, products]);
+  }, [param, data]);
   const handleAddProduct = () => {
     if (!isLogged) return alert("please login to add");
     cartApi
@@ -61,7 +61,7 @@ export default function ProductDetail() {
         </Detail>
       </DetailProduct>
       <Related>
-        {products.map((i) => {
+        {data.map((i) => {
           if (i.category === product.category) {
             return <ProductItem key={i._id} product={i} />;
           }

@@ -11,6 +11,13 @@ export const Item = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+    
+    border-radius:8px;
+    :hover{
+        transform:translateY(-8px);
+        transition:all 0.3s ease-out ;
+        box-shadow:0 3px 6px rgba(0,0,0,0.12);
+    }
     > *{
         margin-top:5px;
     }

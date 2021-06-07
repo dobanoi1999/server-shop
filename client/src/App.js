@@ -27,7 +27,7 @@ import {
   UpdateProduct
 } from './component';
 import { getCart } from './redux/action/cart';
-import { fetchProductList } from './redux/action/product';
+import { fetchProductList, fetchProductListFail, fetchProductListSuccess } from './redux/action/product';
 
 function App() {
 
@@ -40,15 +40,16 @@ function App() {
 
   const token = localStorage.getItem("token")
   const fetchProducts = () => {
+    dispatch(fetchProductList())
     productApi.getAll()
       .then(res => {
 
         const { products } = res
 
-        dispatch(fetchProductList(products))
+        dispatch(fetchProductListSuccess(products))
       })
       .catch(err => {
-        console.log(err)
+        dispatch(fetchProductListFail(err.message))
       })
   }
   const verify = () => {

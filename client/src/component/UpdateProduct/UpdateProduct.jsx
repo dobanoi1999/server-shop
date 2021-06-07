@@ -5,13 +5,13 @@ import { useParams } from "react-router-dom";
 
 const UpdateProduct = () => {
   const params = useParams();
-  const products = useSelector((state) => state.product);
+  const { data } = useSelector((state) => state.product);
 
   const [product, setProduct] = useState();
   const [index, setIndex] = useState(-1);
   useEffect(() => {
     if (params.id) {
-      products.map((i, index) => {
+      data.map((i, index) => {
         if (i._id === params.id) {
           setIndex(index);
           return setProduct(i);

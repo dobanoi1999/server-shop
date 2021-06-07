@@ -1,4 +1,5 @@
 import CartItem from 'component/CartItem/CartItem'
+import { Button } from 'globalCss'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -35,7 +36,7 @@ const Cart = () => {
             </Table>
             <CheckOutContainer>
                 <Total>Total ({card.length} item) :  ${total.format()}</Total>
-                <BtnCheckOut onClick={() => history.push('/checkout')} >check out</BtnCheckOut>
+                <Button bgColor="primary" onClick={() => history.push('/checkout')} >check out</Button>
             </CheckOutContainer>
         </ListCart>
     )

@@ -1,3 +1,4 @@
+import { Button } from "globalCss";
 import useForm from "hooks/useForm";
 import React from "react";
 import authApi from "../../../api/authApi";
@@ -34,7 +35,9 @@ const Register = () => {
             placeholder="Password"
           />
           {err ? err : ""}
-          <button type="submit">submit</button>
+          <Button bgColor="primary" block type="submit">
+            submit
+          </Button>
         </Form>
       </Wrapper>
     </StyledContainer>

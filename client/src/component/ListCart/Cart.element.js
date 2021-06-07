@@ -14,8 +14,7 @@ export const ListCart = styled(Container)`
 `
 
 export const Table = styled.table`
-    width:100%;
-    min-width:1100px;
+   padding:10px;
 `
 export const Total = styled.p`
     color:red;
