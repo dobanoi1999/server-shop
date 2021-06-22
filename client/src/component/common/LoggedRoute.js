@@ -8,7 +8,7 @@ const LoggedRoute = ({ component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
-            render={props => isLogged ? <Component {...props} /> : <Redirect to="/login" />}
+            render={props => isLogged ? <Component {...props} /> : <Redirect to="/" />}
         />
     )
 }

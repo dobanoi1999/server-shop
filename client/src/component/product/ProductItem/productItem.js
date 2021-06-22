@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { addProductToCart } from 'redux/action/cart'
 import { removeProduct } from 'redux/action/product'
-import { BtnDel, Desc, Image, Item, NameProduct, Price } from './productItem.element'
+import { BtnDel, Image, Item, NameProduct, Price } from './productItem.element'
 function ProductItem({ product, isAdmin, index }) {
 
     const isLogged = useSelector(state => state.auth.isLogged)
@@ -67,9 +67,7 @@ function ProductItem({ product, isAdmin, index }) {
                 <NameProduct>
                     {title}
                 </NameProduct>
-                <Desc>
-                    {description}
-                </Desc>
+
                 <Price>
                     ${(+price).format()}
                 </Price>

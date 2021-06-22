@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { fetchCategory } from 'redux/action/category';
 import authApi from './api/authApi';
 import productApi from './api/productApi';
+
 import {
   Cart,
   Category,
@@ -24,7 +25,10 @@ import {
   RegisterForm,
   History,
   HistoryDetail,
-  UpdateProduct
+  UpdateProduct,
+  Footer,
+  Modal,
+
 } from './component';
 import { getCart } from './redux/action/cart';
 import { fetchProductList, fetchProductListFail, fetchProductListSuccess } from './redux/action/product';
@@ -37,7 +41,12 @@ function App() {
   };
   const dispatch = useDispatch()
   const isLogged = useSelector(state => state.auth.isLogged)
-
+  const modal = useSelector(state => state.modal)
+  if (modal.show) {
+    document.body.style.overflow = "hidden"
+  } else {
+    document.body.style.overflow = "auto"
+  }
   const token = localStorage.getItem("token")
   const fetchProducts = () => {
     dispatch(fetchProductList())
@@ -49,6 +58,7 @@ function App() {
         dispatch(fetchProductListSuccess(products))
       })
       .catch(err => {
+        console.log(err)
         dispatch(fetchProductListFail(err.message))
       })
   }
@@ -109,7 +119,15 @@ function App() {
   return (
     <>
       <ToastContainer draggable={true} autoClose={6000} transition={Zoom} />
+
+
+
       <Router>
+        {modal.show && <Modal>
+          {modal.view === "LOGIN_FORM" && <LoginForm />}
+          {modal.view === "REGISTER_FORM" && < RegisterForm />}
+          {modal.view === "CART" && <Cart />}
+        </Modal>}
         <Header />
 
         <Switch>
@@ -119,9 +137,9 @@ function App() {
           <Route path="/product/:id" component={ProductDetail} />
           <LoggedRoute path="/cart" component={Cart} />
 
-          <Route path='/login' component={LoginForm} />
+
           <LoggedRoute path='/checkout' component={CheckOut} />
-          <Route path='/register' component={RegisterForm} />
+
           <LoggedRoute path='/my_order' exact component={Order} />
           <LoggedRoute path='/my_order/:id' component={OrderDetail} />
           <PrivateRoute path='/create_product' component={CreateProduct} />
@@ -130,7 +148,7 @@ function App() {
           <PrivateRoute path='/update_product/:id' component={UpdateProduct} />
           <Route component={() => <h1>not found</h1>} />
         </Switch>
-
+        <Footer />
       </Router>
     </>
   );

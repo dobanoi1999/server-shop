@@ -53,7 +53,8 @@ const ProductList = () => {
             </Button> : ""}
             <ListProduct>
 
-                {loading ? fakeArr.map(() => <ContentLoader
+                {loading ? fakeArr.map((i, index) => <ContentLoader
+                    key={index}
                     width={300}
                     height={300}
                 >

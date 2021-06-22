@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
     try {
 
         const { name, price, description } = req.body
-        console.log(name, price, description)
+
         res.json({ msg: "ok" })
     } catch (error) {
         res.status(500).json({ msg: error.message })

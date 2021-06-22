@@ -1,19 +1,36 @@
 import { Container } from "globalCss";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-export const ListCart = styled(Container)`
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    padding:50px 0;
-    
-    @media screen and (max-width:960px){
-        overflow-x:auto;
-        padding-bottom:0;
+const Fade2 = keyframes`
+    from{
+        transform:translateX(100%)
+    }
+    to{
+        transform:translateX(0%)
     }
 `
+export const ListCart = styled.div`
+    position:absolute;
+    top:0;
+    right:0;
+    background:#ffffff;
+    padding-top:100px; 
+     height:100vh;
+     overflow-y:auto;
+     width:450px;
+     box-shadow: -2px 0 8px rgb(0 0 0 / 15%);
+     display:flex;
+     flex-direction:column;
+     justify-content:space-between;
+    @media screen and (max-width:960px){
+        width:100%;
+       
+        height:100%;
+    }
+    animation : ${Fade2} 700ms  ease-in-out;
+`
 
-export const Table = styled.table`
+export const Table = styled.div`
    padding:10px;
 `
 export const Total = styled.p`
@@ -21,31 +38,29 @@ export const Total = styled.p`
     font-weight:800;
     font-size:1.5rem;
 `
-export const CheckOutContainer = styled(Container)`
-
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    background-color:#f1f1f1;
-    padding:0px 20px;
-    transition:all 0.7s ;
-        position:sticky;  
-        bottom:0;
-     @media screen and (max-width:960px){
- 
-        margin-bottom:10px;
-    }
-
-`
-export const BtnCheckOut = styled.p`
-    border:1px solid;
-    text-align:center;
-    padding:10px;
-    margin-left:20px;
-    background-color:#007bff;
+export const CheckOutContainer = styled.button`
+   
+    background-color:#333333;
     color:#ffffff;
+    padding:20px 20px;
+    transition:opacity 0.7s ;
+    margin-top:auto;
     cursor: pointer;
-    border-radius:5px;
+    width:100%;
     
-
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+    
+    p{
+        flex:1;
+        margin-right:10px;
+        border-right:0.5px solid #ffffff;
+        font-size:1.5rem;
+        font-weight:bold;
+        line-height:1.5rem;
+    }
+    :hover{
+        opacity:0.7;
+    }
 `

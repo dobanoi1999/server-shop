@@ -27,7 +27,7 @@ const userCtl = {
         try {
             const { email, password } = req.body
             const user = await User.findOne({ email })
-            console.log(user)
+
             if (!user) return res.status(400).json({ msg: "Email/Password combination is not valid" })
 
             const isMatch = await bcrypt.compare(password, user.password)

@@ -3,49 +3,53 @@ import userImg from "assets/images/user.jpg";
 import { Button } from "globalCss";
 import useForm from "hooks/useForm";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Form, StyledContainer, Wrapper } from "./loginForm.element";
+import { setModalView } from "redux/action/modal";
+import { Form } from "./loginForm.element";
 
 const LoginForm = () => {
   const { values, handleOnChange, handleSubmit, err } = useForm(authApi.login);
-
+  const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.auth.isLogged);
   if (isLogged) return <Redirect to="/" />;
   return (
-    <StyledContainer>
-      <Wrapper>
-        <Form onSubmit={handleSubmit}>
-          <img
-            style={{ borderRadius: "50%" }}
-            src={userImg}
-            width="100"
-            height="100"
-            alt="user"
-          />
-          <input
-            type="email"
-            name="email"
-            value={values.email}
-            placeholder="Email "
-            required
-            onChange={handleOnChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={values.password}
-            placeholder="PassWord "
-            required
-            onChange={handleOnChange}
-          />
-          {err ? err : ""}
-          <Button bgColor="primary" block type="submit">
-            Submit
-          </Button>
-        </Form>
-      </Wrapper>
-    </StyledContainer>
+    <Form onSubmit={handleSubmit}>
+      <img
+        style={{ borderRadius: "50%" }}
+        src={userImg}
+        width="100"
+        height="100"
+        alt="user"
+      />
+      <h3>Login with email & password </h3>
+      <input
+        type="email"
+        name="email"
+        value={values.email}
+        placeholder="Email "
+        required
+        onChange={handleOnChange}
+      />
+      <input
+        type="password"
+        name="password"
+        value={values.password}
+        placeholder="PassWord "
+        required
+        onChange={handleOnChange}
+      />
+      {err ? err : ""}
+      <Button bgColor="primary" block type="submit">
+        Submit
+      </Button>
+      <p>
+        Don't have account ?{" "}
+        <span onClick={() => dispatch(setModalView("REGISTER_FORM"))}>
+          Register
+        </span>
+      </p>
+    </Form>
   );
 };
 

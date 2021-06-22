@@ -1,29 +1,39 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Container } from "../../../globalCss";
+export const Fade = keyframes`
+   
+    from { opacity: 0; }
+    to   { opacity: 1; }
 
-export const Wrapper = styled.div`
-    border:3px solid #ced4da;
-    background-color:#fff;
-    width:50%;
-    margin-top:30px;
-    @media screen and (max-width:960px){
-        width:100%;
-    }
 `
+
 export const Form = styled.form`
-    margin:60px 30px;
+    
+   background-color:#ffffff;
+   width:50%;
     display:flex;
     justify-content:space-evenly;
     align-items:center;
     flex-direction:column;
+    max-height:calc(100% - 140px);
+    height:100%;
+    padding:20px 10px;
+    overflow-y:auto;
+    border-radius:0.5rem;
     > *:not(:first-child) {
         margin-top:20px
     }
+    span{
+        text-decoration:underline;
+        color:#000000;
+        font-weight:bold;
+        :hover{
+            cursor: pointer;
+            color:blueviolet;
+        }
+    }
+    animation: ${Fade} 700ms ease-in-out ;
+    @media screen and (max-width:960px){
+        width:100%;
+    }
 `
-export const StyledContainer = styled(Container)`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-     padding-bottom:100px;
-    
-`;

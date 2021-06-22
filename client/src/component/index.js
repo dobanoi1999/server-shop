@@ -13,3 +13,5 @@ export { default as OrderDetail } from './Order/OrderDetail/OrderDetail'
 export { default as History } from './History/History'
 export { default as HistoryDetail } from './History/HistoryDetail/HistoryDetail'
 export { default as UpdateProduct } from './UpdateProduct/UpdateProduct'
+export { default as Footer } from "component/footer/footer"
+export { default as Modal } from "component/Modal/Modal"

@@ -1,54 +1,61 @@
 import styled from "styled-components";
 
-export const CartItems = styled.tr`
- 
-  
-  td {
-    vertical-align: middle;
-    text-align: center;
+export const CartItems = styled.div`
+  display:flex;
+  justify-content:space-between;
+  align-items:stretch;
+  padding:10px 10px;
+  border:1px solid #000000;
+  border-radius:5px;
+  box-shadow:0 3px 6px rgba(0,0,0,0.12);
+  margin-bottom:20px;
+`;
+export const Image = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  img{
+    width:100px;
+    height:120px;
+    object-fit:cover;
+    overflow:hidden;
+
   }
 `;
-export const Image = styled.img`
-  width: 80px;
-  height: 100px;
-  object-fit: cover;
-  overflow: hidden;
-  display:block;
-  border-radius:5px;
-`;
-export const Title = styled.p`
-  overflow: hidden;
-`;
-export const Price = styled.span`
-  color: red;
+
+export const Price = styled.div`
+   display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
 `;
 export const NumberItem = styled.div`
   display:flex;
   border:1px solid #000;
   width:fit-content;
- margin:auto;
+  margin:auto;
  border-radius:4px;
 `;
 export const IncreaseBtn = styled.button`
-  border-radius: none;
-  background-color:rgba(107, 114, 128);
-  color: #fff;
-  
-  
+  border:0 ;
+  border-radius:0;
   font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
   padding: 0 15px;
-  :active {
-    background-color: #f1f2f3;
+  background-color: #ffffff;
+  :hover{
+    background-color:#333333;
+    color:#ffffff;
   }
-  :disabled{
-    opacity:0.3;
-  }
+  transition: all 300ms ease-in-out;
+  
 `;
 export const Count = styled.p`
   padding: 0 10px;
   font-size: 1.5rem;
+  border-right:1px solid #000000;
+  border-left:1px solid #000000;
   
 `;
 export const DecreaseBtn = styled(IncreaseBtn)``;
@@ -57,6 +64,7 @@ export const BtnDelete = styled.button`
   font-size: 1rem;
   background-color: #dc3545;
   color:#fff;
+  
   :active {
     background-color: #b02a37;
   }

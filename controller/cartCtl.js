@@ -17,13 +17,14 @@ const cartCtrl = {
     },
     addCart: async (req, res) => {
         try {
+            const { product, quantity } = req.body
 
             const user = await User.findById(req.user._id)
             const { cart } = user
             if (!checkItem(req.body.product._id, cart)) return res.status(500).json({
                 msg: "item is valid!!"
             })
-            cart.push({ product: req.body.product, quantity: 1 })
+            cart.push({ product, quantity })
 
 
             await User.findByIdAndUpdate(req.user._id, {

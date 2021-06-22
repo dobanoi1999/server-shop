@@ -13,6 +13,7 @@ const cartReducer = (cart = [], action) => {
             cart[action.payload].quantity += 1;
             return [...cart]
         case "ADD_CART":
+
             cart.push(action.payload)
             return [...cart]
         default:

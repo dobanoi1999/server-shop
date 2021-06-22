@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { changeShow, setModalView } from "redux/action/modal";
 import {
   CompanyName,
   HeaderContainer,
@@ -34,6 +35,7 @@ const AdminRouter = () => {
 
 const Header = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const { isAdmin, isLogged } = useSelector((state) => state.auth);
   const [click, setClick] = useState(false);
   const cart = useSelector((state) => state.cart);
@@ -42,6 +44,11 @@ const Header = () => {
     localStorage.clear();
     window.location.href = "/";
   };
+  const handleSetViewModal = (view) => {
+    dispatch(setModalView(view));
+    dispatch(changeShow(true));
+  };
+
   const UserRouter = () => {
     return (
       <>
@@ -56,17 +63,16 @@ const Header = () => {
           ""
         )}
         <StyledItem>
-          <Route to="/cart">Cart({cart.length})</Route>
+          <Route onClick={() => handleSetViewModal("CART")}>
+            Cart({cart.length})
+          </Route>
         </StyledItem>
         {isLogged ? (
           ""
         ) : (
           <>
-            <StyledItem>
-              <Route to="/login">Login</Route>
-            </StyledItem>
-            <StyledItem>
-              <Route to="/register">Register</Route>
+            <StyledItem onClick={() => handleSetViewModal("LOGIN_FORM")}>
+              <Route>Login</Route>
             </StyledItem>
           </>
         )}

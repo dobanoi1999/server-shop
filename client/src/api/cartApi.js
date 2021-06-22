@@ -9,8 +9,8 @@ const cartApi = {
             }
         })
     },
-    addToCart: (product) => {
-        return axiosClient.post('/api/cart', { product })
+    addToCart: (product, quantity) => {
+        return axiosClient.post('/api/cart', { product, quantity: +quantity })
     },
     changeQuality: (t, id) => {
         const url = `/api/cart/${id}`
