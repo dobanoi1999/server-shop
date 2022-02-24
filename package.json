@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "client": "cd client && npm start",
-    "mern": "concurrently -n 'server,client' -c 'yellow,blue' \"npm run dev\" \"npm run client\""
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,18 +22,7 @@
     "express-fileupload": "^1.2.0",
     "history": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.15",
-    "query-string": "^6.13.8",
-    "react-content-loader": "^6.0.3",
-    "react-icons": "^4.2.0",
-    "react-redux": "^7.2.2",
-    "react-responsive-carousel": "^3.2.18",
-    "react-router-dom": "^5.2.0",
-    "react-toastify": "^7.0.3",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "styled-components": "^5.2.1",
-    "swiper": "^6.7.0"
+    "mongoose": "^5.10.15"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
